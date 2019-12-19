@@ -9,6 +9,7 @@ const app = express()
 const port = 5000
 
 const CategoryControllers = require('./controllers/category')
+const HomeControllers = require('./controllers/home')
 
 //allow this app to receive incoming json request
 app.use(bodyParser.json())
@@ -22,7 +23,10 @@ app.use(function(req, res, next) {
 
 app.group("/api/v1", (router) =>{
   router.get('/category', CategoryControllers.index)
-  router.post('/categories', CategoryControllers.store )
+  router.post('/categories', CategoryControllers.store)
+  router.get('/article', HomeControllers.index)
+  router.get('/articles', HomeControllers.showArticle)
+  router.get('/latestarticles', HomeControllers.showlatestArticle)
   // router.get('/todo/:id', TodosControllers.show )
   // router.patch('/todo/:id', TodosControllers.update )
   // router.delete('/todo/:id', TodosControllers.delete )
